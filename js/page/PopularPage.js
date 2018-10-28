@@ -7,22 +7,39 @@ import NavigationUtil from '../navigator/NavigationUtil'
 
 type Props = {};
 export default class PopularPage extends Component<Props> {
+    constructor(props) {
+        super(props);
+        this.tabNames = ['Java', 'Android', 'iOS', 'React', 'React Native', 'PHP'];
+    }
 
-    render() {
-        const TabNavigator = createMaterialTopTabNavigator({
-            PopularTab1: {
-                screen: PopularTab,
+    _genTabs() {
+        const tabs = {};
+        this.tabNames.forEach((item, index) => {
+            tabs[`tab${index}`] = {
+                screen: props => <PopularTab {...props} tabLabel={item}/>,
                 navigationOptions: {
-                    title: 'Tab1'
-                }
-            },
-            PopularTab2: {
-                screen: PopularTab,
-                navigationOptions: {
-                    title: 'Tab2'
+                    title: item
                 }
             }
         });
+        return tabs;
+    }
+
+    render() {
+        const TabNavigator = createMaterialTopTabNavigator(
+            this._genTabs(), {
+                tabBarOptions: {
+                    tabStyle: styles.tabStyle,
+                    upperCaseLabel: false,//是否使标签大写，默认为true
+                    scrollEnabled: true,//是否支持 选项卡滚动，默认false
+                    style: {
+                        backgroundColor: '#678',//TabBar 的背景颜色
+                    },
+                    indicatorStyle: styles.indicatorStyle,//标签指示器的样式
+                    labelStyle: styles.labelStyle,//文字的样式
+                }
+            }
+        );
         return <View style={{flex: 1, marginTop: 30}}>
             <TabNavigator/>
         </View>
@@ -51,9 +68,17 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 30
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
+    tabStyle: {
+        minWidth: 50
     },
+    indicatorStyle: {
+        height: 2,
+        backgroundColor: 'white'
+    },
+    labelStyle: {
+        fontSize: 13,
+        marginTop: 6,
+        marginBottom: 6
+
+    }
 });
