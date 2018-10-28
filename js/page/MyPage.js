@@ -1,23 +1,21 @@
 import React, {Component} from 'react';
-import {Button, Platform, StyleSheet, Text, View} from 'react-native';
-
+import {connect} from 'react-redux'
+import {onThemeChange} from '../action/theme'
+import {Button, StyleSheet, Text, View} from 'react-native';
 
 type Props = {};
-export default class MyPage extends Component<Props> {
+
+class MyPage extends Component<Props> {
     render() {
-        const {navigation} = this.props;
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>PopularPage</Text>
+                <Text style={styles.welcome}>MyPage</Text>
                 <Button
                     title="改变主题色"
                     onPress={() => {
-                        navigation.setParams({
-                            theme: {
-                                tintColor: 'blue',
-                                updateTime: new Date().getTime()
-                            }
-                        })
+                        // let {dispatch} = NavigatorUtil.navigation;
+                        // dispatch(onThemeChange('red'))
+                        this.props.onThemeChange('#62a');
                     }}
                 />
             </View>
@@ -25,16 +23,18 @@ export default class MyPage extends Component<Props> {
     }
 }
 
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+    onThemeChange: (theme) => dispatch(onThemeChange(theme)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyPage);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        padding: 50
+
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
+
 });

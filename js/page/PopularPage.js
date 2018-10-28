@@ -9,6 +9,7 @@ type Props = {};
 export default class PopularPage extends Component<Props> {
     constructor(props) {
         super(props);
+        console.log(NavigationUtil.navigation)
         this.tabNames = ['Java', 'Android', 'iOS', 'React', 'React Native', 'PHP'];
     }
 
