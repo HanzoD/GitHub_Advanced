@@ -19,11 +19,11 @@ class MyPage extends Component<Props> {
         const {theme} = this.props;
         let RouteName, params = {theme};
         switch (menu) {
-            case MORE_MENU.Tutorial:
-                RouteName = 'WebViewPage';
-                params.title = '教程';
-                params.url = 'https://coding.m.imooc.com/classindex.html?cid=89';
-                break;
+            // case MORE_MENU.Tutorial:
+            //     RouteName = 'WebViewPage';
+            //     params.title = '教程';
+            //     params.url = 'https://coding.m.imooc.com/classindex.html?cid=89';
+            //     break;
             case MORE_MENU.About:
                 RouteName = 'AboutPage';
                 break;
@@ -93,7 +93,7 @@ class MyPage extends Component<Props> {
                                     color: theme.themeColor,
                                 }}
                             />
-                            <Text>GitHub Popular</Text>
+                            <Text>我的Github</Text>
                         </View>
                         <Ionicons
                             name={'ios-arrow-forward'}
@@ -105,7 +105,10 @@ class MyPage extends Component<Props> {
                             }}/>
                     </TouchableOpacity>
                     <View style={GlobalStyles.line}/>
-                    {this.getItem(MORE_MENU.Tutorial)}
+
+                    {/*教程*/}
+                    {/*{this.getItem(MORE_MENU.Tutorial)}*/}
+
                     {/*趋势管理*/}
                     <Text style={styles.groupTitle}>趋势管理</Text>
                     {/*自定义语言*/}

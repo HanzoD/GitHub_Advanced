@@ -1,4 +1,5 @@
 import {createStackNavigator, createSwitchNavigator, createAppContainer} from "react-navigation";
+//
 import WelcomePage from '../page/WelcomePage';
 import HomePage from '../page/HomePage';
 import WebViewPage from '../page/WebViewPage';
